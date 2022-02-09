@@ -1,0 +1,13 @@
+AllCops:
+  TargetRubyVersion: 2.7
+  NewCops: enable
+  SuggestExtensions: false
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+
+Layout/SpaceAroundOperators:
+  Enabled: false
