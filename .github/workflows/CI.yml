@@ -1,4 +1,4 @@
-name: build
+name: CI
 
 on:
   push:
@@ -11,8 +11,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu, macos]
-        ruby: [2.7]
+        os: [ubuntu]
+        ruby: [2.7, '3.0']
 
     steps:
       - uses: actions/checkout@v2
