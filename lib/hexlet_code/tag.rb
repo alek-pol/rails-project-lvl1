@@ -9,6 +9,7 @@ module HexletCode
     class << self
       # Build tag
       # @param [String|Symbol] name Tag name
+      # @param [Hash] attributes params
       # @return [String]
       def build(name, **attributes, &block)
         result = "<#{name}#{prepare_attributes(attributes)}>"

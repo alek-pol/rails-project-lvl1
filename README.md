@@ -23,7 +23,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: add some methods usage info
+```ruby
+User = Struct.new(:name, :job, :gender, keyword_init: true)
+user = @user.new(name: 'rob', job: 'hexlet', gender: 'm')
+
+form = HexletCode.form_for user do |f|
+  f.input :name
+  f.input :job, as: :text
+end
+
+puts form
+
+# <form action="#" method="post">
+# <input type="text" value="rob" name="name">
+# <textarea cols="20" rows="40" name="job">hexlet</textarea>
+# </form>
+```
 
 ## Development
 

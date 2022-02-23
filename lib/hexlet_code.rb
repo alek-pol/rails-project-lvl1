@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'hexlet_code/errors'
-require_relative 'hexlet_code/tag'
-require_relative 'hexlet_code/version'
-
 # Form generator
 module HexletCode
+  autoload :Error, 'hexlet_code/errors.rb'
+  autoload :Tag, 'hexlet_code/tag.rb'
+  autoload :Form, 'hexlet_code/form.rb'
+  autoload :VERSION, 'hexlet_code/version.rb'
   # Empty form generator
-  # @param [Struct] _ entity objects
+  # @param [Struct] object_data entity objects
   # @param [String] url url
   # @return [String]
-  def self.form_for(_, url: '#')
-    Tag.build(:form, action: url, method: :post)
+  def self.form_for(object_data, url: '#')
+    Tag.build(:form, action: url, method: :post) { yield(Form.new(object_data)) if block_given? }
   end
 end

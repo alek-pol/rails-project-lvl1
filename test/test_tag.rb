@@ -17,11 +17,7 @@ class TestHexletCode < Minitest::Test
     assert HexletCode::Tag.build('br').instance_of?(String)
 
     TAG_TESTS.each do |test|
-      if test[:block]
-        assert_equal(test[:tag], HexletCode::Tag.build(test[:name], **(test[:attribute] || {})) { test[:block] })
-      else
-        assert_equal(test[:tag], HexletCode::Tag.build(test[:name], **(test[:attribute] || {})))
-      end
+      assert_equal(test[:tag], HexletCode::Tag.build(test[:name], **(test[:attribute] || {})) { test[:block] })
     end
   end
 end
