@@ -35,8 +35,10 @@ end
 puts form
 
 # <form action="#" method="post">
-# <input type="text" value="rob" name="name">
-# <textarea cols="20" rows="40" name="job">hexlet</textarea>
+#  <label for="name">Name</label>
+#  <input name="name" type="text" value="rob">
+#  <label for="job">Job</label>
+#  <textarea cols="20" rows="40" name="job">hexlet</textarea>
 # </form>
 ```
 

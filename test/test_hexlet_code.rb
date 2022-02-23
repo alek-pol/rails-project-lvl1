@@ -18,7 +18,7 @@ class TestHexletCode < Minitest::Test
     assert_equal(HexletCode.form_for(user, url: '/users'), '<form action="/users" method="post"></form>')
   end
 
-  def test_form_for_with_block
+  def test_form_for_with_input
     user = @user.new(name: 'rob', job: 'hexlet', gender: 'm')
 
     html = HexletCode.form_for(user) do |f|
@@ -27,6 +27,18 @@ class TestHexletCode < Minitest::Test
     end
 
     assert_equal(html, file_fixture('sample_simple.html'))
+  end
+
+  def test_form_for_with_submit
+    user = @user.new(job: 'hexlet')
+
+    html = HexletCode.form_for(user) do |f|
+      f.input :name
+      f.input :job
+      f.submit
+    end
+
+    assert_equal(html, file_fixture('label_save.html'))
   end
 
   def test_form_for_with_error
