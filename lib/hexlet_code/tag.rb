@@ -22,7 +22,7 @@ module HexletCode
       # @param [Hash] attributes
       # @return [String]
       def prepare_attributes(attributes)
-        attributes.reduce('') { |attrs, (name, value)| value ? attrs + " #{name}=\"#{value}\"" : attrs  }
+        attributes.reduce('') { |attrs, (name, value)| value ? attrs + " #{name}=\"#{value}\"" : attrs }
       end
     end
   end
