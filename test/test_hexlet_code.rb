@@ -44,7 +44,7 @@ class TestHexletCode < Minitest::Test
   def test_form_for_with_error
     user = @user.new(name: 'rob', job: 'hexlet')
 
-    error = assert_raises(HexletCode::Error) do
+    error = assert_raises(NoMethodError) do
       HexletCode.form_for user, url: '/users' do |f|
         f.input :name
         f.input :job, as: :text
@@ -52,7 +52,6 @@ class TestHexletCode < Minitest::Test
       end
     end
 
-    assert error.instance_of?(HexletCode::Error)
-    assert_equal(error.message, "undefined method `age' for #<struct name=\"rob\", job=\"hexlet\", gender=nil>")
+    assert error.instance_of?(NoMethodError)
   end
 end

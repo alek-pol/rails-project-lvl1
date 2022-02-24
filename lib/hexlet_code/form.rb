@@ -13,19 +13,20 @@ module HexletCode
     def input(name, **params)
       label(name)
 
-      @form_fields += send("as_#{params[:as] || :input}", { name: name, value: object_data.send(name) }.merge(params))
-    rescue NoMethodError => e
-      raise Error, e
+      @form_fields += send("as_#{params[:as] || :input}", { name: name, value: object_data.send(name), params: params })
+    rescue NoMethodError
+      raise NoMethodError
     end
 
     def as_text(params = {})
-      attributes = { cols: params[:cols] || '20', rows: params[:rows] || '40', name: params[:name] }
+      param = params[:params]
+      attributes = { name: params[:name], cols: param[:cols] ||= '20', rows: param[:rows] ||= '40' }
 
       Tag.build(:textarea, **attributes) { params[:value] }
     end
 
     def as_input(params = {})
-      Tag.build(:input, name: params[:name], type: :text, value: params[:value])
+      Tag.build(:input, type: :text, name: params[:name], value: params[:value], **params[:params])
     end
 
     def label(name)
@@ -33,7 +34,7 @@ module HexletCode
     end
 
     def submit(value = :Save)
-      @form_fields += Tag.build(:input, name: :commit, type: :submit, value: value)
+      @form_fields += Tag.build(:input, type: :submit, value: value, name: :commit)
     end
   end
 end
