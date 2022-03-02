@@ -1,40 +1,49 @@
 # frozen_string_literal: true
 
+# Html generation lib
 module HexletCode
+  autoload :Inputs, 'hexlet_code/inputs'
   # Generate fields for Form
   class Form
     attr_reader :object_data
 
+    # @param [Hash] object_data
     def initialize(object_data)
       @object_data = object_data
-      @form_fields = ''
+      @form_fields = []
     end
 
+    # @param [Symbol] name
+    # @param [Hash] params
+    # @return [HexletCode::Form]
     def input(name, **params)
       label(name)
 
-      @form_fields += send("as_#{params[:as] || :input}", { name: name, value: object_data.send(name), params: params })
+      class_name = (params[:as] || :input).to_s.capitalize
+      @form_fields << Inputs.const_get(class_name).build({ name: name, value: object_data.send(name), params: params })
+      self
     rescue NoMethodError
       raise NoMethodError
     end
 
-    def as_text(params = {})
-      param = params[:params]
-      attributes = { name: params[:name], cols: param[:cols] ||= '20', rows: param[:rows] ||= '40' }
-
-      Tag.build(:textarea, **attributes) { params[:value] }
-    end
-
-    def as_input(params = {})
-      Tag.build(:input, type: :text, name: params[:name], value: params[:value], **params[:params])
-    end
-
-    def label(name)
-      @form_fields += Tag.build(:label, for: name) { name.capitalize }
-    end
-
+    # @param [Symbol|String] value
+    # @return [HexletCode::Form]
     def submit(value = :Save)
-      @form_fields += Tag.build(:input, type: :submit, value: value, name: :commit)
+      @form_fields << Tag.build(:input, type: :submit, value: value, name: :commit)
+      self
+    end
+
+    # @param [Array]
+    # @return [String]
+    def rendering
+      @form_fields * ''
+    end
+
+    private
+
+    # @param [Symbol] name
+    def label(name)
+      @form_fields << Tag.build(:label, for: name) { name.capitalize }
     end
   end
 end
