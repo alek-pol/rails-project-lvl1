@@ -14,8 +14,8 @@ class TestHexletCode < Minitest::Test
   def test_form_for_without_block
     user = @user.new name: 'Rob'
 
-    assert_equal(HexletCode.form_for(user), '<form action="#" method="post"></form>')
-    assert_equal(HexletCode.form_for(user, url: '/users'), '<form action="/users" method="post"></form>')
+    assert_equal(HexletCode.form_for(user), file_fixture('sample_action_sh.html'))
+    assert_equal(HexletCode.form_for(user, url: '/users'), file_fixture('sample_action_user.html'))
   end
 
   def test_form_for_with_input

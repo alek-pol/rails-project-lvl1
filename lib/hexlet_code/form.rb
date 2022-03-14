@@ -22,8 +22,6 @@ module HexletCode
       class_name = (params[:as] || :input).to_s.capitalize
       @form_fields << Inputs.const_get(class_name).build({ name: name, value: object_data.send(name), params: params })
       self
-    rescue NoMethodError
-      raise NoMethodError
     end
 
     # @param [Symbol|String] value
@@ -36,7 +34,7 @@ module HexletCode
     # @param [Array]
     # @return [String]
     def rendering
-      @form_fields * ''
+      @form_fields.join
     end
 
     private

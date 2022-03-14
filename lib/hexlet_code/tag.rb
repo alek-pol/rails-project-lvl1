@@ -15,14 +15,14 @@ module HexletCode
         result = "<#{name}#{prepare_attributes(attributes)}>"
         return result if SINGLE_TAGS.include? name.to_s
 
-        "#{result}#{yield if !!block}</#{name}>"
+        "#{result}#{block.call if block_given?}</#{name}>"
       end
 
       # Convert hash attributes to string
       # @param [Hash] attributes
       # @return [String]
       def prepare_attributes(attributes)
-        attributes.reduce('') { |attrs, (name, value)| value ? attrs + " #{name}=\"#{value}\"" : attrs }
+        attributes.map { |name, value|  %( #{name}="#{value}") if value }.join
       end
     end
   end

@@ -2,7 +2,6 @@
 
 # Form generator
 module HexletCode
-  autoload :Error, 'hexlet_code/errors.rb'
   autoload :Tag, 'hexlet_code/tag.rb'
   autoload :Form, 'hexlet_code/form.rb'
   autoload :VERSION, 'hexlet_code/version.rb'
@@ -12,7 +11,6 @@ module HexletCode
   # @return [String]
   def self.form_for(object_data, url: '#')
     Tag.build(:form, action: url, method: :post) do
-      # yield(Form.new(object_data)).rendering if block_given?
       yield(Form.new(object_data)).rendering if block_given?
     end
   end
