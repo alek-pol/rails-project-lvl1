@@ -22,7 +22,7 @@ module HexletCode
       # @param [Hash] attributes
       # @return [String]
       def prepare_attributes(attributes)
-        attributes.map { |name, value|  %( #{name}="#{value}") if value }.join
+        attributes.map { |name, value| %( #{name}="#{value}") if value }.join
       end
     end
   end
