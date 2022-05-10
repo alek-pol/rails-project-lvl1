@@ -14,9 +14,6 @@ module HexletCode
   def self.form_for(obj, **attributes, &block)
     tags_data = ObjectForm.new(obj, **attributes, &block)
 
-    # puts Form.new(tags_data).rendering
-    puts Form.new(tags_data).to_string
-
     Form.new(tags_data).to_string
   end
 end
