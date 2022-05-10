@@ -4,14 +4,19 @@
 module HexletCode
   autoload :Tag, 'hexlet_code/tag.rb'
   autoload :Form, 'hexlet_code/form.rb'
+  autoload :ObjectForm, 'hexlet_code/object_form.rb'
+
   autoload :VERSION, 'hexlet_code/version.rb'
   # Empty form generator
-  # @param [Struct] object_data entity objects
-  # @param [String] url url
+  # @param [Struct] obj entity objects
+  # @param [Hash] attributes
   # @return [String]
-  def self.form_for(object_data, url: '#')
-    Tag.build(:form, action: url, method: :post) do
-      yield(Form.new(object_data)).rendering if block_given?
-    end
+  def self.form_for(obj, **attributes, &block)
+    tags_data = ObjectForm.new(obj, **attributes, &block)
+
+    # puts Form.new(tags_data).rendering
+    puts Form.new(tags_data).to_string
+
+    Form.new(tags_data).to_string
   end
 end

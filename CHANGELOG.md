@@ -11,3 +11,10 @@
 ## [0.1.1] - 2022-02-23
 ### Changed / Added
 - add Form
+
+## [0.2.0] - 2022-05-10
+### Changed / Added
+- Refactoring:
+  - Added Internal form structure
+  - Added Reset
+- Changed attribute order

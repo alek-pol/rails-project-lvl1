@@ -15,7 +15,13 @@ module HexletCode
         result = "<#{name}#{prepare_attributes(attributes)}>"
         return result if SINGLE_TAGS.include? name.to_s
 
-        "#{result}#{block.call if block_given?}</#{name}>"
+        "#{result}#{build_value(block.call) if block_given?}</#{name}>"
+      end
+
+      def build_value(value)
+        return value unless value.is_a?(Array)
+
+        value.map { |node| build(node.name, **node.attributes) { node.value } }.join
       end
 
       # Convert hash attributes to string
