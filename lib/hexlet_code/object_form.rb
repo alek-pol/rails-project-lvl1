@@ -8,18 +8,18 @@ module HexletCode
     attr_reader :value, :name, :attributes
 
     DEFAULT_FORM_ATTRIBUTES = {
-      url:    { name: :action, value: '#' },
+      url: { name: :action, value: '#' },
       method: { value: :post }
     }.freeze
 
     DEFAULT_INPUT_ATTRIBUTES = {
       submit: {
         value: 'Save',
-        name:  :commit
+        name: :commit
       },
-      reset:  {
+      reset: {
         value: 'Cancel',
-        name:  :reset
+        name: :reset
       }
     }.freeze
 
