@@ -6,6 +6,9 @@ AllCops:
 Layout/ExtraSpacing:
   Enabled: false
 
+Layout/HashAlignment:
+  Enabled: false
+
 Layout/LineLength:
   Max: 120
 

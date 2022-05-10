@@ -1,5 +1,5 @@
 install:
-	bundle instal
+	bundle install
 
 test:
 	bundle exec rake test
