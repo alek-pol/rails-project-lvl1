@@ -16,7 +16,7 @@ module HexletCode
     end
 
     def rendering
-      # Tag.build(@object_data.name, **@object_data.attributes) { @object_data.value }
+      # TODO: line by line
     end
   end
 end

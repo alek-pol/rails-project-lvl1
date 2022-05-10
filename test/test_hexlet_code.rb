@@ -60,7 +60,7 @@ class TestHexletCode < Minitest::Test
     html = HexletCode.form_for user, url: '/users' do |f|
       f.input :name
       f.input :job, class: 'test'
-      f.submit
+      f.submit 'Submit This Form'
     end
 
     assert_equal(html, file_fixture('with_class.html'))

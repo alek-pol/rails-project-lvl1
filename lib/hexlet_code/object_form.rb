@@ -14,12 +14,12 @@ module HexletCode
 
     DEFAULT_INPUT_ATTRIBUTES = {
       submit: {
-        type:  :submit,
-        value: 'Save'
+        value: 'Save',
+        name:  :commit
       },
       reset:  {
-        type:  :reset,
-        value: 'Clear'
+        value: 'Cancel',
+        name:  :reset
       }
     }.freeze
 
@@ -44,11 +44,14 @@ module HexletCode
       value << ObjectTags.const_get(class_name).new(attr_name, **params, content_value: @object.send(attr_name)).build
     end
 
-    def submit(attr_name = nil, **attributes)
-      attr_name ||= { submit: :commit, reset: :desist }[__callee__]
-      DEFAULT_INPUT_ATTRIBUTES[__callee__].each { |key, params| attributes[key] ||= params }
+    def submit(attr_value = nil, **attributes)
+      defaults = DEFAULT_INPUT_ATTRIBUTES[__callee__]
 
-      value << ObjectTags::Input.new(attr_name, **attributes).build
+      attr_value        ||= defaults[:value]
+      attributes[:type] ||= __callee__
+      attr_name         = attributes[:name] || defaults[:name]
+
+      value << ObjectTags::Input.new(attr_name, **attributes, content_value: attr_value).build
     end
 
     alias reset submit
