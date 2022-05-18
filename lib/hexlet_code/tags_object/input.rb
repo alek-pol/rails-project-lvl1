@@ -12,10 +12,10 @@ module HexletCode
 
       # @return [HexletCode::TagsObject::Base]
       def build
-        @attributes[:name]  = @name
-        @attributes[:type]  ||= :text
+        @attributes[:name] = @name
+        @attributes[:type] ||= :text
         @attributes[:value] = @attributes[:content_value]
-        @name               = :input
+        @name = :input
 
         super
       end

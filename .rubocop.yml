@@ -9,9 +9,3 @@ AllCops:
 
 Layout/ExtraSpacing:
   Enabled: false
-
-Layout/LineLength:
-  Max: 120
-
-Layout/SpaceAroundOperators:
-  Enabled: false
