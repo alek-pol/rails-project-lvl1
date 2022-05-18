@@ -8,16 +8,20 @@ module HexletCode
 
     class << self
       # Build tag
-      # @param [String|Symbol] name Tag name
-      # @param [Hash] attributes params
-      # @return [String]
+      # @param [String, Symbol] name Tag name
+      # @param [Hash] attributes Tag params
+      # @param [Proc] block
+      # @return [String (frozen)]
       def build(name, **attributes, &block)
-        result = "<#{name}#{prepare_attributes(attributes)}>"
-        return result if SINGLE_TAGS.include? name.to_s
+        open_tag = "<#{name}#{prepare_attributes(attributes)}>"
+        return open_tag if SINGLE_TAGS.include? name.to_s
 
-        "#{result}#{build_value(block.call) if block_given?}</#{name}>"
+        "#{open_tag}#{build_value(yield) if block}</#{name}>"
       end
 
+      # Transform nested tagsObject to tags
+      # @param [Array, String (frozen)] value
+      # @return [String (frozen)]
       def build_value(value)
         return value unless value.is_a?(Array)
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  module ObjectTags
+  module TagsObject
     # Build :input tag
     class Input < Base
       INPUT_ATTRIBUTES = %i[accept accesskey align alt autocomplete autofocus border checked disabled form formaction
@@ -10,12 +10,13 @@ module HexletCode
 
       ATTRIBUTE_NAMES = [:name, :type, :value, *OTHER_ATTRIBUTES, *INPUT_ATTRIBUTES].freeze
 
+      # @return [HexletCode::TagsObject::Base]
       def build
-        @attributes[:name] = @name
-        @attributes[:type] ||= :text
-        @name = :input
+        @attributes[:name]  = @name
+        @attributes[:type]  ||= :text
+        @attributes[:value] = @attributes[:content_value]
+        @name               = :input
 
-        rename_key(:content_value, :value)
         super
       end
     end

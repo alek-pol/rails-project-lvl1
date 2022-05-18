@@ -77,6 +77,6 @@ class TestHexletCode < Minitest::Test
       end
     end
 
-    assert error.instance_of?(NoMethodError)
+    assert_instance_of(NoMethodError, error)
   end
 end
