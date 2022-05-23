@@ -16,10 +16,6 @@ module HexletCode
       submit: {
         value: 'Save',
         name: :commit
-      },
-      reset: {
-        value: 'Cancel',
-        name: :reset
       }
     }.freeze
 
@@ -55,16 +51,14 @@ module HexletCode
     # @option params [Symbol, String] :type Tag type
     # @return [Array]
     def submit(attr_value = nil, **params)
-      defaults = DEFAULT_INPUT_ATTRIBUTES[__callee__]
+      defaults = DEFAULT_INPUT_ATTRIBUTES[:submit]
 
       attr_value    ||= defaults[:value]
-      params[:type] ||= __callee__
+      params[:type] ||= :submit
       attr_name     = params[:name] || defaults[:name]
 
       value << TagsObject::Input.new(attr_name, **params, content_value: attr_value).build
     end
-
-    alias reset submit
 
     private
 
