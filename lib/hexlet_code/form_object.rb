@@ -12,7 +12,7 @@ module HexletCode
       method: { value: :post }
     }.freeze
 
-    DEFAULT_INPUT_ATTRIBUTES = {
+    DEFAULT_SUBMIT_ATTRIBUTES = {
       submit: {
         value: 'Save',
         name: :commit
@@ -28,7 +28,7 @@ module HexletCode
     def initialize(object = {}, **attributes, &block)
       @name   = :form
       @object = object
-      form_defaults(attributes)
+      fill_default_form_attributes!(attributes)
       @value = []
 
       instance_eval(&block) if block
@@ -51,7 +51,7 @@ module HexletCode
     # @option params [Symbol, String] :type Tag type
     # @return [Array]
     def submit(attr_value = nil, **params)
-      defaults = DEFAULT_INPUT_ATTRIBUTES[:submit]
+      defaults = DEFAULT_SUBMIT_ATTRIBUTES[:submit]
 
       attr_value    ||= defaults[:value]
       params[:type] ||= :submit
@@ -65,7 +65,7 @@ module HexletCode
     # Fill form attributes with default values
     # @param [Hash] attributes
     # @return [Hash{Symbol->Symbol}]
-    def form_defaults(attributes)
+    def fill_default_form_attributes!(attributes)
       @attributes = DEFAULT_FORM_ATTRIBUTES.map.to_h do |key, params|
         [params[:name] || key, attributes[key] ||= params[:value]]
       end
