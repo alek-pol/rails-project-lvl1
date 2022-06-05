@@ -1,5 +1,6 @@
 [![Actions Status](https://github.com/alek-pol/rails-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/alek-pol/rails-project-lvl1/actions)
 [![CI](https://github.com/alek-pol/test1/actions/workflows/CI.yml/badge.svg)](https://github.com/alek-pol/rails-project-lvl1/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ff2b0eeb19056e29c497/maintainability)](https://codeclimate.com/github/alek-pol/rails-project-lvl1/maintainability)
 
 # HexletCode
 
