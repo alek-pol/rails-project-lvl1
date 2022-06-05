@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  module TagsObject
+  module TagsAttributeBuilder
     # Class tag form
     class Text < Base
       ATTRIBUTE_NAMES = [:name, :cols, :rows, *OTHER_ATTRIBUTES].freeze

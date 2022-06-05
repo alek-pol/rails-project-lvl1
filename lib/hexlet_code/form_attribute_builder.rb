@@ -2,9 +2,9 @@
 
 # Form generator
 module HexletCode
-  autoload :TagsObject, 'hexlet_code/tags_object.rb'
+  autoload :TagsAttributeBuilder, 'hexlet_code/tags_attribute_builder.rb'
   # Abstract Form structure
-  class FormObject
+  class FormAttributeBuilder
     attr_reader :value, :name, :attributes
 
     DEFAULT_FORM_ATTRIBUTES = {
@@ -13,10 +13,7 @@ module HexletCode
     }.freeze
 
     DEFAULT_SUBMIT_ATTRIBUTES = {
-      submit: {
-        value: 'Save',
-        name: :commit
-      }
+      submit: { value: 'Save', name: :commit }
     }.freeze
 
     # @param [Struct] object Entity objects, contains data to fill a form
@@ -42,8 +39,10 @@ module HexletCode
     def input(attr_name, **params)
       class_name = (params[:as] || :input).to_s.capitalize
 
-      value << TagsObject::Label.new(attr_name, **params).build
-      value << TagsObject.const_get(class_name).new(attr_name, **params, content_value: @object.send(attr_name)).build
+      value << TagsAttributeBuilder::Label.new(attr_name, **params).build
+
+      params[:content_value] = @object.send(attr_name)
+      value << TagsAttributeBuilder.const_get(class_name).new(attr_name, **params).build
     end
 
     # @param attr_value [String, nil]
@@ -57,7 +56,7 @@ module HexletCode
       params[:type] ||= :submit
       attr_name     = params[:name] || defaults[:name]
 
-      value << TagsObject::Input.new(attr_name, **params, content_value: attr_value).build
+      value << TagsAttributeBuilder::Input.new(attr_name, **params, content_value: attr_value).build
     end
 
     private

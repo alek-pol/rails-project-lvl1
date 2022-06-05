@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  module TagsObject
+  module TagsAttributeBuilder
     # Class tag form
     class Base
       attr_reader :name, :attributes, :value

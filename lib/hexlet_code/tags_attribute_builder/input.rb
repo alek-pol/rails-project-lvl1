@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  module TagsObject
+  module TagsAttributeBuilder
     # Build :input tag
     class Input < Base
       INPUT_ATTRIBUTES = %i[accept accesskey align alt autocomplete autofocus border checked disabled form formaction

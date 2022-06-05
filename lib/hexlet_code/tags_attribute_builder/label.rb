@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  module TagsObject
+  module TagsAttributeBuilder
     # Build :label tag
     class Label < Base
       ATTRIBUTE_NAMES = %i[for].freeze
